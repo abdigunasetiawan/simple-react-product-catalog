@@ -1,4 +1,5 @@
 import { createContext, useState, useContext } from "react";
+import toast from "react-hot-toast"; // Import toast
 import productData from "../data/products.json";
 
 const GlobalContext = createContext();
@@ -20,24 +21,53 @@ export const GlobalProvider = ({ children }) => {
   // Action: Add to Wishlist
   const addToWishlist = (product) => {
     const isExist = wishlist.find((item) => item.id === product.id);
+
     if (!isExist) {
       setWishlist([...wishlist, product]);
-      alert(`${product.name} ditambahkan ke Wishlist!`);
+      // Ganti alert dengan toast.success
+      toast.success(`${product.name} berhasil disimpan!`, {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+        iconTheme: {
+          primary: "#4ade80", // Warna hijau terang
+          secondary: "#FFFAEE",
+        },
+      });
     } else {
-      alert("Item ini sudah ada di Wishlist kamu.");
+      // Ganti alert dengan toast.error (atau custom icon)
+      toast.error("Item ini sudah ada di Wishlist!", {
+        icon: "⚠️", // Kita pakai icon warning
+        style: {
+          borderRadius: "10px",
+          background: "#FFF4E5",
+          color: "#B45309",
+          border: "1px solid #FCD34D",
+        },
+      });
     }
   };
 
   // Action: Remove from Wishlist
   const removeFromWishlist = (id) => {
+    const itemToRemove = wishlist.find((item) => item.id === id);
     setWishlist(wishlist.filter((item) => item.id !== id));
+
+    // Optional: Toast saat dihapus
+    if (itemToRemove) {
+      toast(`${itemToRemove.name} dihapus dari Wishlist`, {
+        icon: "🗑️",
+      });
+    }
   };
 
   // Action: Place Order
   const placeOrder = (product) => {
     const newTransaction = {
       ...product,
-      orderId: `ORDER-${Date.now()}`,
+      orderId: `ORD-${Date.now()}`,
       date: new Date().toLocaleDateString("id-ID", {
         weekday: "long",
         year: "numeric",
@@ -48,13 +78,32 @@ export const GlobalProvider = ({ children }) => {
 
     setTransactions([newTransaction, ...transactions]);
 
-    // Jika item dibeli dari wishlist, hapus dari wishlist
+    // Jika item dibeli dari wishlist, hapus dari wishlist tanpa toast tambahan
     const isInWishlist = wishlist.find((item) => item.id === product.id);
     if (isInWishlist) {
-      removeFromWishlist(product.id);
+      setWishlist(wishlist.filter((item) => item.id !== product.id));
     }
 
-    alert(`Pesanan Berhasil! Menikmati ${product.name}`);
+    // Ganti alert dengan toast.success custom
+    toast.success(
+      <div>
+        <span className="font-bold">Order Berhasil!</span>
+        <br />
+        <span className="text-sm">Selamat Menikmati {product.name}... ☕</span>
+      </div>,
+      {
+        duration: 4000, // Tampil selama 4 detik
+        style: {
+          border: "1px solid #713200",
+          padding: "16px",
+          color: "#713200",
+        },
+        iconTheme: {
+          primary: "#713200",
+          secondary: "#FFFAEE",
+        },
+      },
+    );
   };
 
   return (
