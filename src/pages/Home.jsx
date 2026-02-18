@@ -31,9 +31,9 @@ const Home = () => {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-3xl px-6">
-          <span className="mb-4 inline-block rounded-full border border-orange-400/30 bg-orange-500/20 px-3 py-1 text-xs font-bold tracking-widest text-orange-300 uppercase backdrop-blur-sm">
+          {/* <span className="mb-4 inline-block rounded-full border border-orange-400/30 bg-orange-500/20 px-3 py-1 text-xs font-bold tracking-widest text-orange-300 uppercase backdrop-blur-sm">
             Brew Haven Signature
-          </span>
+          </span> */}
           <h1 className="mb-6 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-6xl">
             Awaken Your Senses with <br />
             <span className="text-orange-400">Authentic Taste</span>
