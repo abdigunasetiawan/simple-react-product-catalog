@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Aren Latte Signature",
+    "price": 28000,
+    "description": "Espresso house blend dengan susu segar dan gula aren asli organik.",
+    "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80",
+    "category": "Coffee"
+  },
+  {
+    "id": 2,
+    "name": "Caramel Macchiato",
+    "price": 35000,
+    "description": "Perpaduan vanilla syrup, susu steam, espresso, dan saus karamel.",
+    "image": "https://images.unsplash.com/photo-1485808191679-5f8c7c8606af?w=500&q=80",
+    "category": "Coffee"
+  },
+  {
+    "id": 3,
+    "name": "Matcha Creamy Latte",
+    "price": 32000,
+    "description": "Bubuk matcha premium Jepang dipadukan dengan susu creamy.",
+    "image": "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=500&q=80",
+    "category": "Non-Coffee"
+  },
+  {
+    "id": 4,
+    "name": "Cold Brew Bottles",
+    "price": 40000,
+    "description": "Kopi seduh dingin yang direndam 12 jam. Rasa halus dan rendah asam.",
+    "image": "https://images.unsplash.com/photo-1517701604599-bb29b5c5090c?w=500&q=80",
+    "category": "Coffee"
+  },
+  {
+    "id": 5,
+    "name": "Butter Croissant",
+    "price": 22000,
+    "description": "Pastry renyah berlapis dengan mentega Prancis berkualitas.",
+    "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80",
+    "category": "Pastry"
+  },
+  {
+    "id": 6,
+    "name": "New York Cheesecake",
+    "price": 38000,
+    "description": "Kue keju lembut dengan dasar biskuit graham cracker.",
+    "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=500&q=80",
+    "category": "Pastry"
+  },
+  {
+    "id": 7,
+    "name": "House Blend Beans (250g)",
+    "price": 95000,
+    "description": "Biji kopi Arabika & Robusta (70:30) dengan notes coklat dan kacang.",
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80",
+    "category": "Beans"
+  },
+  {
+    "id": 8,
+    "name": "Ceramic Mug Earth Tone",
+    "price": 85000,
+    "description": "Gelas keramik buatan tangan dengan desain minimalis estetik.",
+    "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&q=80",
+    "category": "Merchandise"
+  }
+]
