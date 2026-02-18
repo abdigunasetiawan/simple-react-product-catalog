@@ -1,66 +1,98 @@
 [
   {
     "id": 1,
-    "name": "Aren Latte Signature",
+    "name": "Signature Aren Latte",
     "price": 28000,
-    "description": "Espresso house blend dengan susu segar dan gula aren asli organik.",
-    "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80",
+    "description": "Kopi susu kekinian dengan gula aren organik dan espresso house blend.",
+    "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80",
     "category": "Coffee"
   },
   {
     "id": 2,
-    "name": "Caramel Macchiato",
-    "price": 35000,
-    "description": "Perpaduan vanilla syrup, susu steam, espresso, dan saus karamel.",
-    "image": "https://images.unsplash.com/photo-1485808191679-5f8c7c8606af?w=500&q=80",
+    "name": "Hot Cappuccino",
+    "price": 32000,
+    "description": "Espresso single shot dengan susu steam dan foam tebal yang lembut.",
+    "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80",
     "category": "Coffee"
   },
   {
     "id": 3,
-    "name": "Matcha Creamy Latte",
-    "price": 32000,
-    "description": "Bubuk matcha premium Jepang dipadukan dengan susu creamy.",
-    "image": "https://images.unsplash.com/photo-1515825838458-f2a94b20105a?w=500&q=80",
-    "category": "Non-Coffee"
+    "name": "Iced Americano",
+    "price": 25000,
+    "description": "Double shot espresso dengan air mineral dingin dan es batu. Segar dan strong.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKBdRvRy9F55t1Y8Q0l_IN3MmORq5CJAveoQ&s",
+    "category": "Coffee"
   },
   {
     "id": 4,
-    "name": "Cold Brew Bottles",
-    "price": 40000,
-    "description": "Kopi seduh dingin yang direndam 12 jam. Rasa halus dan rendah asam.",
-    "image": "https://images.unsplash.com/photo-1517701604599-bb29b5c5090c?w=500&q=80",
+    "name": "Caramel Macchiato",
+    "price": 38000,
+    "description": "Perpaduan vanilla, susu, espresso, dan saus karamel legit di atasnya.",
+    "image": "https://athome.starbucks.com/sites/default/files/2024-05/CaramelMacchiato_RecipeHeader_848x539_%402x.jpg",
     "category": "Coffee"
   },
   {
     "id": 5,
-    "name": "Butter Croissant",
-    "price": 22000,
-    "description": "Pastry renyah berlapis dengan mentega Prancis berkualitas.",
-    "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80",
-    "category": "Pastry"
+    "name": "Cold Brew Bottle",
+    "price": 42000,
+    "description": "Kopi seduh dingin 12 jam. Rasa lebih halus, rendah asam, dan naturally sweet.",
+    "image": "https://i.pinimg.com/474x/1b/5a/13/1b5a13d6939c122cc5b6260960162d5b.jpg",
+    "category": "Coffee"
   },
   {
     "id": 6,
-    "name": "New York Cheesecake",
-    "price": 38000,
-    "description": "Kue keju lembut dengan dasar biskuit graham cracker.",
-    "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=500&q=80",
-    "category": "Pastry"
+    "name": "Matcha Latte Premium",
+    "price": 35000,
+    "description": "Bubuk matcha import Jepang asli dipadukan dengan susu segar creamy.",
+    "image": "https://www.darkstarcoffee.com.au/cdn/shop/products/premium-matcha-latte-or-250g-darkstar-coffee-23478902161568.jpg?v=1700401363",
+    "category": "Non-Coffee"
   },
   {
     "id": 7,
-    "name": "House Blend Beans (250g)",
-    "price": 95000,
-    "description": "Biji kopi Arabika & Robusta (70:30) dengan notes coklat dan kacang.",
-    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&q=80",
-    "category": "Beans"
+    "name": "Classic Chocolate",
+    "price": 33000,
+    "description": "Coklat Belgia leleh dengan susu segar. Tersedia panas atau dingin.",
+    "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=800&q=80",
+    "category": "Non-Coffee"
   },
   {
     "id": 8,
-    "name": "Ceramic Mug Earth Tone",
-    "price": 85000,
-    "description": "Gelas keramik buatan tangan dengan desain minimalis estetik.",
-    "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&q=80",
+    "name": "Butter Croissant",
+    "price": 24000,
+    "description": "Pastry renyah berlapis dengan mentega Prancis (Elle & Vire).",
+    "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80",
+    "category": "Food"
+  },
+  {
+    "id": 9,
+    "name": "Almond Croissant",
+    "price": 32000,
+    "description": "Croissant dengan isian krim almond manis dan taburan kacang almond panggang.",
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+    "category": "Food"
+  },
+  {
+    "id": 10,
+    "name": "Basque Burnt Cheesecake",
+    "price": 45000,
+    "description": "Kue keju dengan tekstur sangat lembut (creamy) dan permukaan karamel gosong.",
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80",
+    "category": "Food"
+  },
+  {
+    "id": 11,
+    "name": "Arabica Gayo Beans (250g)",
+    "price": 95000,
+    "description": "Biji kopi Aceh Gayo single origin. Notes: Dark Chocolate, Spice, Low Acidity.",
+    "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80",
+    "category": "Merchandise"
+  },
+  {
+    "id": 12,
+    "name": "Brew Haven Tumbler",
+    "price": 185000,
+    "description": "Tumbler stainless steel tahan panas/dingin hingga 8 jam. Desain minimalis.",
+    "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80",
     "category": "Merchandise"
   }
 ]
