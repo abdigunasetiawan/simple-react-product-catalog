@@ -3,11 +3,28 @@ import ProductCard from "../components/ProductCard";
 import { ArrowRight, Coffee, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { products } = useGlobalContext();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    if (!location.state?.scrollToMenu) {
+      window.scrollTo(0, 0);
+    }
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (location.state?.scrollToMenu) {
@@ -15,9 +32,10 @@ const Home = () => {
         document
           .getElementById("menu-section")
           ?.scrollIntoView({ behavior: "smooth" });
+        navigate(location.pathname, { replace: true, state: {} });
       }, 100);
     }
-  }, [location]);
+  }, [location.state?.scrollToMenu, location.pathname, navigate]);
 
   const scrollToMenu = () => {
     document
@@ -31,6 +49,15 @@ const Home = () => {
       opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const fadeInZoom = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
@@ -52,7 +79,7 @@ const Home = () => {
         variants={staggerContainer}
         className="flex flex-col-reverse items-center gap-10 pt-4 md:flex-row md:gap-16 md:pt-12"
       >
-        {/* Text Content (Kiri) */}
+        {/* Text Content */}
         <motion.div
           variants={fadeInUp}
           className="flex-1 text-center md:text-left"
@@ -90,9 +117,9 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Image Content (Kanan) */}
+        {/* Image Content - MENGGUNAKAN fadeInZoom */}
         <motion.div
-          variants={fadeInUp}
+          variants={fadeInZoom}
           className="relative mx-auto w-full max-w-md flex-1 md:max-w-full"
         >
           <img
