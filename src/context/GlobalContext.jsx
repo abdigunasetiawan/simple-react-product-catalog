@@ -1,5 +1,5 @@
-import { createContext, useState, useContext } from "react";
-import toast from "react-hot-toast"; // Import toast
+import { createContext, useState, useContext, useEffect } from "react";
+import toast from "react-hot-toast";
 import productData from "../data/products.json";
 
 const GlobalContext = createContext();
@@ -9,7 +9,31 @@ export const GlobalProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
   const [transactions, setTransactions] = useState([]);
 
-  // Helper: Format Rupiah
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      return true;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const formatRupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -18,28 +42,21 @@ export const GlobalProvider = ({ children }) => {
     }).format(number);
   };
 
-  // Action: Add to Wishlist
   const addToWishlist = (product) => {
     const isExist = wishlist.find((item) => item.id === product.id);
-
     if (!isExist) {
       setWishlist([...wishlist, product]);
-      // Ganti alert dengan toast.success
       toast.success(`${product.name} berhasil disimpan!`, {
         style: {
           borderRadius: "10px",
-          background: "#333",
+          background: isDarkMode ? "#1f2937" : "#333",
           color: "#fff",
         },
-        iconTheme: {
-          primary: "#4ade80", // Warna hijau terang
-          secondary: "#FFFAEE",
-        },
+        iconTheme: { primary: "#4ade80", secondary: "#FFFAEE" },
       });
     } else {
-      // Ganti alert dengan toast.error (atau custom icon)
       toast.error("Item ini sudah ada di Wishlist!", {
-        icon: "⚠️", // Kita pakai icon warning
+        icon: "⚠️",
         style: {
           borderRadius: "10px",
           background: "#FFF4E5",
@@ -50,20 +67,13 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  // Action: Remove from Wishlist
   const removeFromWishlist = (id) => {
     const itemToRemove = wishlist.find((item) => item.id === id);
     setWishlist(wishlist.filter((item) => item.id !== id));
-
-    // Optional: Toast saat dihapus
-    if (itemToRemove) {
-      toast(`${itemToRemove.name} dihapus dari Wishlist`, {
-        icon: "🗑️",
-      });
-    }
+    if (itemToRemove)
+      toast(`${itemToRemove.name} dihapus dari Wishlist`, { icon: "🗑️" });
   };
 
-  // Action: Place Order
   const placeOrder = (product) => {
     const newTransaction = {
       ...product,
@@ -78,13 +88,10 @@ export const GlobalProvider = ({ children }) => {
 
     setTransactions([newTransaction, ...transactions]);
 
-    // Jika item dibeli dari wishlist, hapus dari wishlist tanpa toast tambahan
     const isInWishlist = wishlist.find((item) => item.id === product.id);
-    if (isInWishlist) {
+    if (isInWishlist)
       setWishlist(wishlist.filter((item) => item.id !== product.id));
-    }
 
-    // Ganti alert dengan toast.success custom
     toast.success(
       <div>
         <span className="font-bold">Order Berhasil!</span>
@@ -92,16 +99,13 @@ export const GlobalProvider = ({ children }) => {
         <span className="text-sm">Selamat Menikmati {product.name}... ☕</span>
       </div>,
       {
-        duration: 4000, // Tampil selama 4 detik
+        duration: 4000,
         style: {
           border: "1px solid #713200",
           padding: "16px",
           color: "#713200",
         },
-        iconTheme: {
-          primary: "#713200",
-          secondary: "#FFFAEE",
-        },
+        iconTheme: { primary: "#713200", secondary: "#FFFAEE" },
       },
     );
   };
@@ -116,6 +120,8 @@ export const GlobalProvider = ({ children }) => {
         removeFromWishlist,
         placeOrder,
         formatRupiah,
+        isDarkMode,
+        toggleDarkMode,
       }}
     >
       {children}
@@ -123,6 +129,4 @@ export const GlobalProvider = ({ children }) => {
   );
 };
 
-export const useGlobalContext = () => {
-  return useContext(GlobalContext);
-};
+export const useGlobalContext = () => useContext(GlobalContext);

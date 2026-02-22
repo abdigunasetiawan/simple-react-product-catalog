@@ -1,38 +1,35 @@
 import { Link } from "react-router-dom";
-import { Coffee, Heart, History, Menu, X } from "lucide-react";
+import { Coffee, Heart, History, Menu, X, Sun, Moon } from "lucide-react";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useState } from "react";
 
 const Navbar = () => {
-  const { wishlist } = useGlobalContext();
+  const { wishlist, isDarkMode, toggleDarkMode } = useGlobalContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="border-coffee-100 sticky top-0 z-50 border-b bg-white shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 shadow-sm backdrop-blur-md transition-colors duration-300 dark:border-gray-800 dark:bg-gray-900/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Brand Logo */}
           <Link to="/" className="group flex items-center gap-2">
-            <div className="bg-coffee-600 group-hover:bg-coffee-900 rounded-lg p-2 transition">
-              <Coffee className="h-6 w-6 text-white" />
+            <div className="bg-primary-600 group-hover:bg-primary-700 dark:bg-primary-500 dark:group-hover:bg-primary-600 rounded-lg p-2 transition">
+              <Coffee className="h-6 w-6 text-white dark:text-gray-900" />
             </div>
-            <span className="text-coffee-900 text-xl font-bold tracking-tight">
+            <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               Brew Haven
             </span>
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden items-center space-x-8 md:flex">
             <Link
               to="/"
-              className="hover:text-coffee-600 font-medium text-gray-600 transition"
+              className="hover:text-primary-600 dark:hover:text-primary-400 font-medium text-gray-600 transition dark:text-gray-300"
             >
               Menu
             </Link>
-
             <Link
               to="/wishlist"
-              className="hover:text-coffee-600 relative flex items-center gap-1 font-medium text-gray-600 transition"
+              className="hover:text-primary-600 dark:hover:text-primary-400 relative flex items-center gap-1 font-medium text-gray-600 transition dark:text-gray-300"
             >
               Favorites
               {wishlist.length > 0 && (
@@ -41,20 +38,39 @@ const Navbar = () => {
                 </span>
               )}
             </Link>
-
             <Link
               to="/history"
-              className="hover:text-coffee-600 font-medium text-gray-600 transition"
+              className="hover:text-primary-600 dark:hover:text-primary-400 font-medium text-gray-600 transition dark:text-gray-300"
             >
               Orders
             </Link>
+
+            <button
+              onClick={toggleDarkMode}
+              className="hover:text-primary-500 dark:hover:text-primary-400 cursor-pointer text-gray-500 transition-colors dark:text-gray-400"
+            >
+              {isDarkMode ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={toggleDarkMode}
+              className="text-gray-500 dark:text-gray-400"
+            >
+              {isDarkMode ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="hover:text-coffee-600 text-gray-600 focus:outline-none"
+              className="hover:text-primary-600 text-gray-600 focus:outline-none dark:text-gray-300"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -66,28 +82,27 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
-        <div className="border-coffee-100 absolute w-full border-t bg-white shadow-lg md:hidden">
+        <div className="absolute w-full border-t border-gray-200 bg-white shadow-lg md:hidden dark:border-gray-800 dark:bg-gray-900">
           <div className="space-y-2 px-4 pt-2 pb-4">
             <Link
               to="/"
-              className="hover:text-coffee-600 hover:bg-coffee-50 block rounded-md px-3 py-2 text-base font-medium text-gray-700"
               onClick={() => setIsMenuOpen(false)}
+              className="hover:bg-primary-50 hover:text-primary-600 dark:hover:text-primary-400 block rounded-md px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
             >
               Menu
             </Link>
             <Link
               to="/wishlist"
-              className="hover:text-coffee-600 hover:bg-coffee-50 block rounded-md px-3 py-2 text-base font-medium text-gray-700"
               onClick={() => setIsMenuOpen(false)}
+              className="hover:bg-primary-50 hover:text-primary-600 dark:hover:text-primary-400 block rounded-md px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
             >
-              Favorites ({wishlist.length})
+              Favorites
             </Link>
             <Link
               to="/history"
-              className="hover:text-coffee-600 hover:bg-coffee-50 block rounded-md px-3 py-2 text-base font-medium text-gray-700"
               onClick={() => setIsMenuOpen(false)}
+              className="hover:bg-primary-50 hover:text-primary-600 dark:hover:text-primary-400 block rounded-md px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
             >
               Orders
             </Link>

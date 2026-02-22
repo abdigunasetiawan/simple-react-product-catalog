@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../context/GlobalContext";
 import ProductCard from "../components/ProductCard";
-import { ArrowRight, Coffee, Clock, Award } from "lucide-react";
+import { ArrowRight, Coffee, ShieldCheck, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { products } = useGlobalContext();
@@ -11,106 +12,158 @@ const Home = () => {
       .scrollIntoView({ behavior: "smooth" });
   };
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
-    <div className="space-y-12">
-      {" "}
-      {/* Memberikan jarak antar section */}
-      {/* 1. HERO SECTION (Banner Style) */}
-      <div className="relative flex h-[500px] w-full items-center justify-center overflow-hidden rounded-3xl text-center text-white shadow-xl">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 hover:scale-105"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1200&q=80')",
-          }}
+    <div className="space-y-16 pb-12">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="flex flex-col-reverse items-center gap-10 pt-4 md:flex-row md:gap-16 md:pt-12"
+      >
+        <motion.div
+          variants={fadeInUp}
+          className="flex-1 text-center md:text-left"
         >
-          {/* Overlay Gradient agar teks lebih terbaca */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 mx-auto max-w-3xl px-6">
-          {/* <span className="mb-4 inline-block rounded-full border border-orange-400/30 bg-orange-500/20 px-3 py-1 text-xs font-bold tracking-widest text-orange-300 uppercase backdrop-blur-sm">
-            Brew Haven Signature
-          </span> */}
-          <h1 className="mb-6 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-6xl">
-            Awaken Your Senses with <br />
-            <span className="text-orange-400">Authentic Taste</span>
+          <h1 className="text-primary-800 mb-6 text-4xl leading-tight font-extrabold md:text-5xl lg:text-6xl dark:text-white">
+            Awaken Your Senses with <br className="hidden lg:block" />
+            <span className="text-primary-600 dark:text-primary-500">
+              Authentic Taste
+            </span>
           </h1>
-          <p className="mb-8 text-lg leading-relaxed text-gray-200 drop-shadow-md">
+          <p className="mx-auto mb-8 max-w-xl text-lg text-gray-600 md:mx-0 dark:text-gray-300">
             Temukan kenikmatan kopi artisan yang dipadukan dengan suasana
-            hangat. Setiap cangkir bercerita tentang kualitas dan dedikasi.
+            hangat. Setiap cangkir bercerita tentang kualitas, dedikasi, dan
+            gairah kami terhadap kopi.
           </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <button
+          <div className="flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
+            <motion.button
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
               onClick={scrollToMenu}
-              className="flex transform items-center justify-center gap-2 rounded-full bg-orange-600 px-8 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:bg-orange-700 hover:shadow-orange-600/30"
+              className="bg-primary-600 shadow-primary-600/20 hover:bg-primary-700 hover:shadow-primary-600/30 dark:bg-primary-500 dark:hover:bg-primary-600 flex cursor-pointer items-center justify-center gap-2 rounded-xl px-8 py-3 font-bold text-white shadow-lg transition-colors hover:shadow-xl"
             >
-              Order Now <ArrowRight className="h-5 w-5" />
-            </button>
-            <button className="rounded-full border border-white/30 bg-white/10 px-8 py-3 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20">
-              Our Story
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* 2. FEATURES SECTION (Transparent Background) */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="border-coffee-100 rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-          <div className="bg-coffee-50 mb-4 flex h-12 w-12 items-center justify-center rounded-xl">
-            <Coffee className="text-coffee-600 h-6 w-6" />
-          </div>
-          <h3 className="text-coffee-900 mb-2 text-lg font-bold">
-            Premium Beans
-          </h3>
-          <p className="text-sm text-gray-500">
-            Dipetik dari dataran tinggi terbaik, menjamin aroma dan rasa otentik
-            di setiap seduhan.
-          </p>
-        </div>
+              Lihat Menu <ArrowRight className="h-5 w-5" />
+            </motion.button>
 
-        <div className="border-coffee-100 rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-          <div className="bg-coffee-50 mb-4 flex h-12 w-12 items-center justify-center rounded-xl">
-            <Clock className="text-coffee-600 h-6 w-6" />
+            <motion.button
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="cursor-pointer rounded-xl border border-gray-200 bg-white px-8 py-3 font-bold text-gray-900 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+            >
+              Kisah Kami
+            </motion.button>
           </div>
-          <h3 className="text-coffee-900 mb-2 text-lg font-bold">
-            Roast to Order
-          </h3>
-          <p className="text-sm text-gray-500">
-            Kopi kami dipanggang dalam batch kecil setiap hari untuk menjaga
-            kesegaran maksimal.
-          </p>
-        </div>
+        </motion.div>
 
-        <div className="border-coffee-100 rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-          <div className="bg-coffee-50 mb-4 flex h-12 w-12 items-center justify-center rounded-xl">
-            <Award className="text-coffee-600 h-6 w-6" />
-          </div>
-          <h3 className="text-coffee-900 mb-2 text-lg font-bold">
-            Master Barista
-          </h3>
-          <p className="text-sm text-gray-500">
-            Disajikan oleh tangan ahli yang mengerti seni dan sains di balik
-            kopi yang sempurna.
-          </p>
+        <motion.div
+          variants={fadeInUp}
+          className="relative mx-auto w-full max-w-md flex-1 md:max-w-full"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=800&q=80"
+            alt="Perfect Coffee"
+            className="shadow-primary-900/20 h-[400px] w-full rounded-[2rem] object-cover shadow-2xl lg:h-[500px]"
+          />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="rounded-3xl border-y border-gray-200 bg-white/50 py-12 dark:border-gray-800 dark:bg-gray-900/30"
+      >
+        <div className="grid grid-cols-1 gap-8 px-6 text-center md:grid-cols-3 md:gap-12 md:text-left lg:px-12">
+          {[
+            {
+              icon: Coffee,
+              title: "Biji Kopi Premium",
+              desc: "Kami menggunakan 100% biji kopi Arabika pilihan yang dipetik langsung dari petani lokal.",
+            },
+            {
+              icon: Sparkles,
+              title: "Dipanggang Sempurna",
+              desc: "Proses roasting presisi setiap harinya untuk memastikan kesegaran dan aroma maksimal.",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Kualitas Terjamin",
+              desc: "Disajikan oleh barista ahli yang mengerti seni di balik secangkir kopi yang sempurna.",
+            },
+          ].map((feature, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              className="flex flex-col items-center gap-4 md:flex-row md:items-start"
+            >
+              <div className="bg-primary-100 text-primary-600 dark:bg-primary-900/40 dark:text-primary-500 shrink-0 rounded-2xl p-4">
+                <feature.icon className="h-8 w-8" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {feature.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
-      {/* 3. CATALOG SECTION */}
-      <div id="menu-section" className="pt-8">
+      </motion.div>
+
+      <div id="menu-section" className="pt-4">
         <div className="mb-8 flex flex-col items-end justify-between gap-4 md:flex-row">
-          <div>
-            <h2 className="text-coffee-900 text-3xl font-bold">Our Menu</h2>
-            <p className="mt-2 text-gray-500">
-              Explore our best selling coffee and pastries.
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+              Signature Menu
+            </h2>
+            <div className="bg-primary-500 dark:bg-primary-600 mb-4 h-1 w-20 rounded-full"></div>
+            <p className="text-gray-600 dark:text-gray-400">
+              Temukan favorit barumu dari koleksi minuman dan pastry lezat kami.
             </p>
-          </div>
-          {/* Opsional: Kategori Filter bisa ditambahkan disini nanti */}
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
+              <ProductCard product={product} />
+            </motion.div>
           ))}
         </div>
       </div>
