@@ -60,7 +60,7 @@ const Navbar = () => {
 
             <button
               onClick={toggleDarkMode}
-              className="hover:text-primary-500 dark:hover:text-primary-400 text-gray-500 transition-colors dark:text-gray-400"
+              className="hover:text-primary-500 dark:hover:text-primary-400 cursor-pointer text-gray-500 transition-colors dark:text-gray-400"
             >
               {isDarkMode ? (
                 <Sun className="h-5 w-5" />
