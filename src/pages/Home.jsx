@@ -2,9 +2,22 @@ import { useGlobalContext } from "../context/GlobalContext";
 import ProductCard from "../components/ProductCard";
 import { ArrowRight, Coffee, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const { products } = useGlobalContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToMenu) {
+      setTimeout(() => {
+        document
+          .getElementById("menu-section")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location]);
 
   const scrollToMenu = () => {
     document
@@ -25,14 +38,13 @@ const Home = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.2 },
     },
   };
 
   return (
     <div className="space-y-16 pb-12">
+      {/* 1. HERO SECTION */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -40,6 +52,7 @@ const Home = () => {
         variants={staggerContainer}
         className="flex flex-col-reverse items-center gap-10 pt-4 md:flex-row md:gap-16 md:pt-12"
       >
+        {/* Text Content (Kiri) */}
         <motion.div
           variants={fadeInUp}
           className="flex-1 text-center md:text-left"
@@ -77,6 +90,7 @@ const Home = () => {
           </div>
         </motion.div>
 
+        {/* Image Content (Kanan) */}
         <motion.div
           variants={fadeInUp}
           className="relative mx-auto w-full max-w-md flex-1 md:max-w-full"
@@ -84,11 +98,12 @@ const Home = () => {
           <img
             src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=800&q=80"
             alt="Perfect Coffee"
-            className="shadow-primary-900/20 h-[400px] w-full rounded-[2rem] object-cover shadow-2xl lg:h-[500px]"
+            className="shadow-primary-900/20 h-[280px] w-full rounded-[2rem] object-cover shadow-2xl sm:h-[350px] md:h-[400px] lg:h-[500px]"
           />
         </motion.div>
       </motion.div>
 
+      {/* 2. FEATURES SECTION */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -135,19 +150,21 @@ const Home = () => {
         </div>
       </motion.div>
 
-      <div id="menu-section" className="pt-4">
-        <div className="mb-8 flex flex-col items-end justify-between gap-4 md:flex-row">
+      {/* 3. CATALOG SECTION */}
+      <div id="menu-section" className="scroll-mt-24 pt-4">
+        <div className="mb-10 flex flex-col items-center justify-center text-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="flex flex-col items-center"
           >
             <h2 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
               Signature Menu
             </h2>
             <div className="bg-primary-500 dark:bg-primary-600 mb-4 h-1 w-20 rounded-full"></div>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="max-w-2xl text-gray-600 dark:text-gray-400">
               Temukan favorit barumu dari koleksi minuman dan pastry lezat kami.
             </p>
           </motion.div>
